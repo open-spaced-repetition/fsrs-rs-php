@@ -1,0 +1,12 @@
+[package]
+name = "fsrs-rs-php"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+ext-php-rs = "0.11.2"
+fsrs = "2.0.4"
+
