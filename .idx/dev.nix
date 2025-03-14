@@ -14,6 +14,7 @@
     pkgs.rustup
     pkgs.clang-tools
     pkgs.clang
+    pkgs.libclang
     pkgs.php81.unwrapped.dev # https://github.com/NixOS/nixpkgs/issues/110826
   ];
 

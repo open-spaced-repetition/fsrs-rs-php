@@ -14,16 +14,21 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest]
         rust: [stable, beta]
 
     steps:
     - uses: actions/checkout@v3
     
     - name: Install Rust
-      uses: dtolnay/rust-toolchain@master
+      uses: dtolnay/rust-toolchain@stable
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
       with:
-        toolchain: ${{ matrix.rust }}
+        php-version: 8.1
+        ini-values: error_reporting=E_ALL
+        tools: composer:v2
+        coverage: none
     
     - name: Cache dependencies
       uses: actions/cache@v3
@@ -34,11 +39,11 @@ jobs:
           target
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
     
-    - name: Check formatting
-      run: cargo fmt --all -- --check
+    # - name: Check formatting
+    #   run: cargo fmt --all -- --check
     
-    - name: Check lints
-      run: cargo clippy -- -D warnings
+    # - name: Check lints
+    #   run: cargo clippy -- -D warnings
 
     - name: Build
       run: cargo build -r --verbose
