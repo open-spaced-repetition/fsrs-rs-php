@@ -1,6 +1,4 @@
 use ext_php_rs::prelude::*;
-use ext_php_rs::types::Zval;
-use ext_php_rs::zend::ExecuteData;
 
 //  Bring the `fsrs` crate into scope so we can use its types.
 //  You'd need `fsrs = { path = "../path/to/fsrs" }` in your `Cargo.toml`.
