@@ -50,3 +50,7 @@ jobs:
     
     - name: Run tests
       run: cargo test --verbose
+    - run: cargo install cargo-php --locked
+    - run: cargo php install --yes
+    - run: php -m
+    - run: php examples/sample.php
