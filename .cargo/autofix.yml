@@ -16,13 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
-        with:
-          enable-cache: true
-      - run: uvx ruff check --fix-only .
-      - run: uvx ruff format .
-
       - uses: actions/cache@v4
         with:
           path: |
@@ -36,8 +29,7 @@ jobs:
       - run: rustup toolchain install ${{ env.rust_clippy }} --profile minimal --component rustfmt --component clippy
       - run: rustup default ${{ env.rust_clippy }}
 
-      - run: cargo clippy --fix --workspace --allow-dirty
+      - run: cargo clippy --fix --workspace
       - run: cargo fmt --all
-
 
       - uses: autofix-ci/action@551dded8c6cc8a1054039c8bc0b8b48c51dfc6ef
