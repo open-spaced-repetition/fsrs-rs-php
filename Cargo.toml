@@ -7,7 +7,7 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-ext-php-rs = "0.11.2"
+ext-php-rs = "0.13.1"
 fsrs = "2.0.4"
 bincode = "=2.0.0-rc.3" # https://github.com/tracel-ai/burn/issues/2876
 bincode_derive = "=2.0.0-rc.3"
