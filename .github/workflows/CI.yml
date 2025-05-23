@@ -48,16 +48,20 @@ jobs:
     #   run: cargo clippy -- -D warnings
 
     - name: Build
-      run: cargo build -r --verbose
+      run: cargo build --verbose
     
     - name: Run tests
       run: cargo test --verbose
     - name: cargo install cargo-php --locked
       run: cargo install cargo-php --locked || true
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-    - name: cargo php install --yes
-      run: sudo cargo php install --yes
+    - name: cargo php install
+      run: |
+        extension_dir=$(php -r "echo ini_get('extension_dir');")
+        sudo mkdir -p $extension_dir
+        sudo cp target/debug/libfsrs_rs_php.so $extension_dir/libfsrs_rs_php.so
+        echo "extension=libfsrs_rs_php.so" >> $(php -r "echo php_ini_loaded_file();")
+
+
     - name: php -m
       run: php -m
     - name: php examples/sample.php
