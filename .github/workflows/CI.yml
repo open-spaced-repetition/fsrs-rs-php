@@ -53,9 +53,9 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: cargo install cargo-php --locked
-      run: cargo install cargo-php --locked --force
+      run: cargo install cargo-php --locked || true
     - name: cargo php install --yes
-      run: cargo php install --yes
+      run: sudo cargo php install --yes
     - name: php -m
       run: php -m
     - name: php examples/sample.php
