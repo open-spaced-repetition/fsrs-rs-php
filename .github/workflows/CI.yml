@@ -1,8 +1,10 @@
 name: Rust CI
 
 on:
+  workflow_call: {}
+  pull_request: {}
   push:
-  pull_request:
+    branches: [ "main" ]
 
 
 env:
