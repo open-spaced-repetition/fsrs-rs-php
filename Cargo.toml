@@ -8,6 +8,9 @@ crate-type = ["cdylib"]
 
 [dependencies]
 ext-php-rs = "0.13.1"
-fsrs = "2.0.4"
-bincode = "=2.0.0-rc.3" # https://github.com/tracel-ai/burn/issues/2876
-bincode_derive = "=2.0.0-rc.3"
+
+[dependencies.fsrs]
+# version = "2.0.4"
+# path = "../fsrs-rs"
+git = "https://github.com/open-spaced-repetition/fsrs-rs.git"
+rev = "9b2f2f72f68e7fbddf1aff3ca0271d6ee26702e6"
