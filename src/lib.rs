@@ -217,15 +217,15 @@ pub struct SimulationResult(fsrs::SimulationResult);
 
 #[php_impl(rename_methods = "none")]
 impl SimulationResult {
-    pub fn get_memorized_cnt_per_day(&self) -> Vec<u32> {
+    pub fn get_memorized_cnt_per_day(&self) -> Vec<f32> {
         self.0.memorized_cnt_per_day.clone()
     }
 
-    pub fn get_review_cnt_per_day(&self) -> Vec<u32> {
+    pub fn get_review_cnt_per_day(&self) -> Vec<usize> {
         self.0.review_cnt_per_day.clone()
     }
 
-    pub fn get_learn_cnt_per_day(&self) -> Vec<u32> {
+    pub fn get_learn_cnt_per_day(&self) -> Vec<usize> {
         self.0.learn_cnt_per_day.clone()
     }
 
@@ -233,7 +233,7 @@ impl SimulationResult {
         self.0.cost_per_day.clone()
     }
 
-    pub fn get_correct_cnt_per_day(&self) -> Vec<u32> {
+    pub fn get_correct_cnt_per_day(&self) -> Vec<usize> {
         self.0.correct_cnt_per_day.clone()
     }
 }
