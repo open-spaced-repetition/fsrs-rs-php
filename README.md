@@ -1,4 +1,4 @@
-# FSRS-RS-PHP(WIP)
+# FSRS-RS-PHP
 
 A PHP binding for the FSRS (Free Spaced Repetition Scheduler) Rust implementation.
 
@@ -14,6 +14,15 @@ This project provides PHP bindings for the Rust implementation of FSRS, allowing
 
 ## Installation
 
-check Opendal's
+on linux
 
-<https://github.com/apache/opendal/blob/main/bindings/php/README.md>
+```
+extension_dir=$(php -r "echo ini_get('extension_dir');")
+sudo mkdir -p $extension_dir
+sudo cp target/debug/libfsrs_rs_php.so $extension_dir/libfsrs_rs_php.so
+echo "extension=libfsrs_rs_php.so" >> $(php -r "echo php_ini_loaded_file();")
+```
+
+## Usage:
+
+check `./examples`
