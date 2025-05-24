@@ -30,7 +30,8 @@ function main() {
     
     // Create a completely new card (no memory state)
     echo "Day 1: Creating a new card\n";
-    $day1States = $fsrs->next_states(null, $optimalRetention, 0);
+    $currentMemoryState = null;
+    $day1States = $fsrs->next_states($currentMemoryState, $optimalRetention, 0);
     
     // Rate as 'hard' on first day
     $day1 = $day1States->get_hard();
