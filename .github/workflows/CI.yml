@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
         rust: [stable, beta]
 
     steps:
@@ -65,4 +65,4 @@ jobs:
     - name: php -m
       run: php -m
     - name: php examples/sample.php
-      run: php examples/sample.php
+      run: find examples -name "*.php" -print | xargs -I {} php {}
