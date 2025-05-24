@@ -189,7 +189,7 @@ impl FSRSItem {
 
 // FSRSReview 结构体
 #[php_class(name = "fsrs\\FSRSReview")]
-#[derive(Debug, Clone, Copy, IntoZval, FromZval)]
+#[derive(Debug, Clone, Copy, ZvalConvert)]
 pub struct FSRSReview(fsrs::FSRSReview);
 
 #[php_impl(rename_methods = "none")]
