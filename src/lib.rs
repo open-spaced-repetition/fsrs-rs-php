@@ -160,18 +160,18 @@ pub struct FSRSItem(fsrs::FSRSItem);
 
 #[php_impl(rename_methods = "none")]
 impl FSRSItem {
-    pub fn __construct(reviews: Vec<FSRSReview>) -> Self {
+    pub fn __construct(reviews: Vec<&FSRSReview>) -> Self {
         Self(fsrs::FSRSItem {
-            reviews: reviews.iter().map(|x| x.inner).collect(),
+            reviews: reviews.iter().map(|x| x.0).collect(),
         })
     }
 
     pub fn get_reviews(&self) -> Vec<FSRSReview> {
-        self.0.reviews.iter().map(|x| FSRSReview { inner: *x }).collect()
+        self.0.reviews.iter().map(|x| FSRSReview(*x)).collect()
     }
 
-    pub fn set_reviews(&mut self, reviews: Vec<FSRSReview>) {
-        self.0.reviews = reviews.iter().map(|x| x.inner).collect()
+    pub fn set_reviews(&mut self, reviews: Vec<&FSRSReview>) {
+        self.0.reviews = reviews.iter().map(|x| x.0).collect()
     }
 
     pub fn long_term_review_cnt(&self) -> usize {
@@ -189,29 +189,25 @@ impl FSRSItem {
 
 // FSRSReview 结构体
 #[php_class(name = "fsrs\\FSRSReview")]
-#[derive(Debug, Clone, Copy, ZvalConvert)]
-pub struct FSRSReview {
-    inner: fsrs::FSRSReview,
-}
+#[derive(Debug, Clone, Copy)]
+pub struct FSRSReview(fsrs::FSRSReview);
 
 #[php_impl(rename_methods = "none")]
 impl FSRSReview {
     pub fn __construct(rating: u32, delta_t: u32) -> Self {
-        Self {
-            inner: fsrs::FSRSReview { rating, delta_t },
-        }
+        Self(fsrs::FSRSReview { rating, delta_t })
     }
 
     pub fn get_rating(&self) -> u32 {
-        self.inner.rating
+        self.0.rating
     }
 
     pub fn get_delta_t(&self) -> u32 {
-        self.inner.delta_t
+        self.0.delta_t
     }
 
     pub fn __toString(&self) -> String {
-        format!("{:?}", self.inner)
+        format!("{:?}", self.0)
     }
 }
 
