@@ -71,7 +71,11 @@ impl FSRS {
         )
     }
 
-    pub fn memory_state(&self, item: &FSRSItem, starting_state: Option<&MemoryState>) -> MemoryState {
+    pub fn memory_state(
+        &self,
+        item: &FSRSItem,
+        starting_state: Option<&MemoryState>,
+    ) -> MemoryState {
         MemoryState(
             self.0
                 .lock()
@@ -258,7 +262,11 @@ pub fn simulate(
     seed: Option<u64>,
 ) -> SimulationResult {
     let default_config = fsrs::SimulatorConfig::default();
-    let config = if let Some(c) = config { &c.0 } else { &default_config };
+    let config = if let Some(c) = config {
+        &c.0
+    } else {
+        &default_config
+    };
     SimulationResult(fsrs::simulate(config, &w, desired_retention, seed, None).unwrap())
 }
 
