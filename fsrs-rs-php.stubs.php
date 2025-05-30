@@ -11,22 +11,6 @@ namespace fsrs {
         public function __toString(): string {}
     }
 
-    class SimulationResult {
-        public function get_memorized_cnt_per_day(): array {}
-
-        public function get_review_cnt_per_day(): array {}
-
-        public function get_learn_cnt_per_day(): array {}
-
-        public function get_cost_per_day(): array {}
-
-        public function get_correct_cnt_per_day(): array {}
-    }
-
-    class SimulatorConfig {
-        public function __construct() {}
-    }
-
     class FSRS {
         public function __construct(array $parameters) {}
 
@@ -51,14 +35,14 @@ namespace fsrs {
         public function __toString(): string {}
     }
 
-    class MemoryState {
-        public function __construct(float $stability, float $difficulty) {}
+    class NextStates {
+        public function get_hard(): \fsrs\ItemState {}
 
-        public function get_stability(): float {}
+        public function get_good(): \fsrs\ItemState {}
 
-        public function get_difficulty(): float {}
+        public function get_easy(): \fsrs\ItemState {}
 
-        public function __toString(): string {}
+        public function get_again(): \fsrs\ItemState {}
     }
 
     class FSRSItem {
@@ -73,14 +57,30 @@ namespace fsrs {
         public function __toString(): string {}
     }
 
-    class NextStates {
-        public function get_hard(): \fsrs\ItemState {}
+    class MemoryState {
+        public function __construct(float $stability, float $difficulty) {}
 
-        public function get_good(): \fsrs\ItemState {}
+        public function get_stability(): float {}
 
-        public function get_easy(): \fsrs\ItemState {}
+        public function get_difficulty(): float {}
 
-        public function get_again(): \fsrs\ItemState {}
+        public function __toString(): string {}
+    }
+
+    class SimulationResult {
+        public function get_memorized_cnt_per_day(): array {}
+
+        public function get_review_cnt_per_day(): array {}
+
+        public function get_learn_cnt_per_day(): array {}
+
+        public function get_cost_per_day(): array {}
+
+        public function get_correct_cnt_per_day(): array {}
+    }
+
+    class SimulatorConfig {
+        public function __construct() {}
     }
 }
 
