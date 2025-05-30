@@ -16,7 +16,7 @@ This project provides PHP bindings for the Rust implementation of FSRS, allowing
 
 on linux
 
-```
+```bash
 extension_dir=$(php -r "echo ini_get('extension_dir');")
 sudo mkdir -p $extension_dir
 sudo cp target/debug/libfsrs_rs_php.so $extension_dir/libfsrs_rs_php.so
