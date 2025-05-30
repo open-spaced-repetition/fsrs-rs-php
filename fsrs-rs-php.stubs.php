@@ -3,30 +3,6 @@
 // Stubs for fsrs-rs-php
 
 namespace fsrs {
-    class ItemState {
-        public function get_memory(): \fsrs\MemoryState {}
-
-        public function get_interval(): float {}
-
-        public function __toString(): string {}
-    }
-
-    class SimulatorConfig {
-        public function __construct() {}
-    }
-
-    class FSRSItem {
-        public function __construct(array $reviews) {}
-
-        public function get_reviews(): array {}
-
-        public function set_reviews(array $reviews) {}
-
-        public function long_term_review_cnt(): int {}
-
-        public function __toString(): string {}
-    }
-
     class SimulationResult {
         public function get_memorized_cnt_per_day(): array {}
 
@@ -37,6 +13,34 @@ namespace fsrs {
         public function get_cost_per_day(): array {}
 
         public function get_correct_cnt_per_day(): array {}
+    }
+
+    class FSRSReview {
+        public function __construct(int $rating, int $delta_t) {}
+
+        public function get_rating(): int {}
+
+        public function get_delta_t(): int {}
+
+        public function __toString(): string {}
+    }
+
+    class ItemState {
+        public function get_memory(): \fsrs\MemoryState {}
+
+        public function get_interval(): float {}
+
+        public function __toString(): string {}
+    }
+
+    class NextStates {
+        public function get_hard(): \fsrs\ItemState {}
+
+        public function get_good(): \fsrs\ItemState {}
+
+        public function get_easy(): \fsrs\ItemState {}
+
+        public function get_again(): \fsrs\ItemState {}
     }
 
     class MemoryState {
@@ -63,24 +67,20 @@ namespace fsrs {
         public function memory_state(\fsrs\FSRSItem $item, ?\fsrs\MemoryState $starting_state): \fsrs\MemoryState {}
     }
 
-    class NextStates {
-        public function get_hard(): \fsrs\ItemState {}
+    class FSRSItem {
+        public function __construct(array $reviews) {}
 
-        public function get_good(): \fsrs\ItemState {}
+        public function get_reviews(): array {}
 
-        public function get_easy(): \fsrs\ItemState {}
+        public function set_reviews(array $reviews) {}
 
-        public function get_again(): \fsrs\ItemState {}
-    }
-
-    class FSRSReview {
-        public function __construct(int $rating, int $delta_t) {}
-
-        public function get_rating(): int {}
-
-        public function get_delta_t(): int {}
+        public function long_term_review_cnt(): int {}
 
         public function __toString(): string {}
+    }
+
+    class SimulatorConfig {
+        public function __construct() {}
     }
 }
 
