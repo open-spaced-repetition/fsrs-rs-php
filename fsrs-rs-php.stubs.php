@@ -11,38 +11,8 @@ namespace fsrs {
         public function __toString(): string {}
     }
 
-    class FSRS {
-        public function __construct(array $parameters) {}
-
-        public function next_states(?\fsrs\MemoryState $current_memory_state, float $desired_retention, int $days_elapsed): \fsrs\NextStates {}
-
-        public function compute_parameters(array $train_set): array {}
-
-        public function benchmark(array $train_set): array {}
-
-        public function memory_state_from_sm2(float $ease_factor, float $interval, float $sm2_retention): \fsrs\MemoryState {}
-
-        public function memory_state(\fsrs\FSRSItem $item, ?\fsrs\MemoryState $starting_state): \fsrs\MemoryState {}
-    }
-
-    class FSRSReview {
-        public function __construct(int $rating, int $delta_t) {}
-
-        public function get_rating(): int {}
-
-        public function get_delta_t(): int {}
-
-        public function __toString(): string {}
-    }
-
-    class NextStates {
-        public function get_hard(): \fsrs\ItemState {}
-
-        public function get_good(): \fsrs\ItemState {}
-
-        public function get_easy(): \fsrs\ItemState {}
-
-        public function get_again(): \fsrs\ItemState {}
+    class SimulatorConfig {
+        public function __construct() {}
     }
 
     class FSRSItem {
@@ -53,16 +23,6 @@ namespace fsrs {
         public function set_reviews(array $reviews) {}
 
         public function long_term_review_cnt(): int {}
-
-        public function __toString(): string {}
-    }
-
-    class MemoryState {
-        public function __construct(float $stability, float $difficulty) {}
-
-        public function get_stability(): float {}
-
-        public function get_difficulty(): float {}
 
         public function __toString(): string {}
     }
@@ -79,8 +39,48 @@ namespace fsrs {
         public function get_correct_cnt_per_day(): array {}
     }
 
-    class SimulatorConfig {
-        public function __construct() {}
+    class MemoryState {
+        public function __construct(float $stability, float $difficulty) {}
+
+        public function get_stability(): float {}
+
+        public function get_difficulty(): float {}
+
+        public function __toString(): string {}
+    }
+
+    class FSRS {
+        public function __construct(array $parameters) {}
+
+        public function next_states(?\fsrs\MemoryState $current_memory_state, float $desired_retention, int $days_elapsed): \fsrs\NextStates {}
+
+        public function compute_parameters(array $train_set): array {}
+
+        public function benchmark(array $train_set): array {}
+
+        public function memory_state_from_sm2(float $ease_factor, float $interval, float $sm2_retention): \fsrs\MemoryState {}
+
+        public function memory_state(\fsrs\FSRSItem $item, ?\fsrs\MemoryState $starting_state): \fsrs\MemoryState {}
+    }
+
+    class NextStates {
+        public function get_hard(): \fsrs\ItemState {}
+
+        public function get_good(): \fsrs\ItemState {}
+
+        public function get_easy(): \fsrs\ItemState {}
+
+        public function get_again(): \fsrs\ItemState {}
+    }
+
+    class FSRSReview {
+        public function __construct(int $rating, int $delta_t) {}
+
+        public function get_rating(): int {}
+
+        public function get_delta_t(): int {}
+
+        public function __toString(): string {}
     }
 }
 
