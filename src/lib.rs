@@ -6,10 +6,10 @@ use std::sync::Mutex;
 //  You'd need `fsrs = { path = "../path/to/fsrs" }` in your `Cargo.toml`.
 
 // FSRS 主结构体
-#[php_class(name = "fsrs\\FSRS")]
+#[php(name = "fsrs\\FSRS")]
 pub struct FSRS(Mutex<fsrs::FSRS>);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl FSRS {
     pub fn __construct(parameters: Vec<f32>) -> Self {
         Self(fsrs::FSRS::new(Some(&parameters)).unwrap().into())
@@ -87,11 +87,11 @@ impl FSRS {
 }
 
 // MemoryState 结构体
-#[php_class(name = "fsrs\\MemoryState")]
+#[php(name = "fsrs\\MemoryState")]
 #[derive(Debug, Clone)]
 pub struct MemoryState(fsrs::MemoryState);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl MemoryState {
     pub fn __construct(stability: f32, difficulty: f32) -> Self {
         Self(fsrs::MemoryState {
@@ -114,11 +114,11 @@ impl MemoryState {
 }
 
 // NextStates 结构体
-#[php_class(name = "fsrs\\NextStates")]
+#[php(name = "fsrs\\NextStates")]
 #[derive(Debug, Clone)]
 pub struct NextStates(fsrs::NextStates);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl NextStates {
     pub fn get_hard(&self) -> ItemState {
         ItemState(self.0.hard.clone())
@@ -138,11 +138,11 @@ impl NextStates {
 }
 
 // ItemState 结构体
-#[php_class(name = "fsrs\\ItemState")]
+#[php(name = "fsrs\\ItemState")]
 #[derive(Debug, Clone)]
 pub struct ItemState(fsrs::ItemState);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl ItemState {
     pub fn get_memory(&self) -> MemoryState {
         MemoryState(self.0.memory)
@@ -158,11 +158,11 @@ impl ItemState {
 }
 
 // FSRSItem 结构体
-#[php_class(name = "fsrs\\FSRSItem")]
+#[php(name = "fsrs\\FSRSItem")]
 #[derive(Debug, Clone)]
 pub struct FSRSItem(fsrs::FSRSItem);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl FSRSItem {
     pub fn __construct(reviews: Vec<&FSRSReview>) -> Self {
         Self(fsrs::FSRSItem {
@@ -192,11 +192,11 @@ impl FSRSItem {
 }
 
 // FSRSReview 结构体
-#[php_class(name = "fsrs\\FSRSReview")]
+#[php(name = "fsrs\\FSRSReview")]
 #[derive(Debug, Clone, Copy)]
 pub struct FSRSReview(fsrs::FSRSReview);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl FSRSReview {
     pub fn __construct(rating: u32, delta_t: u32) -> Self {
         Self(fsrs::FSRSReview { rating, delta_t })
@@ -216,10 +216,10 @@ impl FSRSReview {
 }
 
 // SimulationResult 结构体
-#[php_class(name = "fsrs\\SimulationResult")]
+#[php(name = "fsrs\\SimulationResult")]
 pub struct SimulationResult(fsrs::SimulationResult);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl SimulationResult {
     pub fn get_memorized_cnt_per_day(&self) -> Vec<f32> {
         self.0.memorized_cnt_per_day.clone()
@@ -243,10 +243,10 @@ impl SimulationResult {
 }
 
 // SimulatorConfig 结构体（需要创建一个基本的配置）
-#[php_class(name = "fsrs\\SimulatorConfig")]
+#[php(name = "fsrs\\SimulatorConfig")]
 pub struct SimulatorConfig(fsrs::SimulatorConfig);
 
-#[php_impl(rename_methods = "none")]
+#[php(rename_methods = "none")]
 impl SimulatorConfig {
     pub fn __construct() -> Self {
         Self(fsrs::SimulatorConfig::default())
